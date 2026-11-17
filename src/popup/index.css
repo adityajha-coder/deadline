@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* shadcn-style design tokens: one calm accent, neutral greys, light + dark. */
+:root {
+  --background: #fbfbfc;
+  --foreground: #17171c;
+  --card: #ffffff;
+  --muted: #f3f3f6;
+  --muted-foreground: #6b6b78;
+  --border: #e6e6ec;
+  --primary: #e8630a;
+  --primary-foreground: #ffffff;
+  --destructive: #e5484d;
+  --ring: #e8630a;
+  --radius: 0.75rem;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0f13;
+    --foreground: #ececf1;
+    --card: #17171c;
+    --muted: #202026;
+    --muted-foreground: #9d9dab;
+    --border: #2a2a32;
+    --primary: #f0893a;
+    --primary-foreground: #1a0800;
+    --destructive: #f2686c;
+    --ring: #f0893a;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-destructive: var(--destructive);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html,
+  body {
+    margin: 0;
+    width: 380px;
+    height: 560px;
+    overflow: hidden;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+  }
+}
+
+/* Motion: short, soft, and switched off for people who prefer reduced motion. */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.fade-in { animation: fade-in 0.2s ease-out both; }
+.pop-in { animation: pop-in 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
